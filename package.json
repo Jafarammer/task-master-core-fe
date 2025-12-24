@@ -19,6 +19,7 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.13.2"
   },
   "devDependencies": {
