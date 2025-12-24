@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getApi } from "../../services";
-import { TMyTaskParams, TMyTaskResponse } from "../../types/myTask.type";
+import { TMyTaskParams, TMyTaskResponseData } from "../../types/myTask.type";
 
 export const fetchCompletedTask = createAsyncThunk<
-  TMyTaskResponse,
+  TMyTaskResponseData,
   TMyTaskParams | undefined,
   { rejectValue: string }
 >("completedTask/fetch", async (params, { rejectWithValue }) => {
@@ -18,7 +18,7 @@ export const fetchCompletedTask = createAsyncThunk<
     const response = await getApi().get("/task/completed", {
       params: { page, limit, sort_by, order, search },
     });
-    return response.data as TMyTaskResponse;
+    return response.data as TMyTaskResponseData;
   } catch (error: any) {
     return rejectWithValue(
       error.response?.data?.message || "Failed to fetch tasks completed"

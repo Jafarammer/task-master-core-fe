@@ -19,7 +19,7 @@ export type TMyTaskParams = {
   search?: string;
 };
 
-export type TMyTaskResponse = {
+export type TMyTaskResponseData = {
   data: TMyTaskData[];
   meta_data: {
     page: number;
@@ -27,4 +27,24 @@ export type TMyTaskResponse = {
     total: number;
     total_pages: number;
   };
+};
+
+export type TMyTaskPayload = {
+  title: string;
+  description: string;
+  due_date: string;
+  priority: string;
+  is_completed?: boolean;
+};
+
+export type TMyTaskUpdateStatusPayload = {
+  is_completed: boolean;
+};
+
+export type TMyTaskResponse = {
+  message: string;
+};
+
+export type TMyTaskDetailResponse = {
+  data: TMyTaskPayload;
 };

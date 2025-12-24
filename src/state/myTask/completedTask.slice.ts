@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCompletedTask } from "./completedTask.thunk";
-import { TMyTaskResponse } from "../../types/myTask.type";
+import { TMyTaskResponseData } from "../../types/myTask.type";
 
 type TCompletedTaskState = {
-  items: TMyTaskResponse["data"];
-  meta_data: TMyTaskResponse["meta_data"];
+  items: TMyTaskResponseData["data"];
+  meta_data: TMyTaskResponseData["meta_data"];
   loading: boolean;
   error: string | null;
 };
