@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllTask } from "./allTask.thunk";
+import { fetchCompletedTask } from "./completedTask.thunk";
 import { TMyTaskResponse } from "../../types/myTask.type";
 
-type AllTaskState = {
+type TCompletedTaskState = {
   items: TMyTaskResponse["data"];
   meta_data: TMyTaskResponse["meta_data"];
   loading: boolean;
   error: string | null;
 };
 
-const initialState: AllTaskState = {
+const initialState: TCompletedTaskState = {
   items: [],
   meta_data: {
     page: 1,
@@ -21,35 +21,35 @@ const initialState: AllTaskState = {
   error: null,
 };
 
-const allTaskSlice = createSlice({
-  name: "allTasks",
+const completedTaskSlice = createSlice({
+  name: "completedTask",
   initialState,
   reducers: {
-    logoutAllTask: (state) => {
-      state.items = [];
-      state.meta_data = {
-        page: 1,
-        limit: 5,
-        total: 0,
-        total_pages: 0,
-      };
-      state.loading = false;
+    logoutCompletedTask: (state) => {
+      (state.items = []),
+        (state.meta_data = {
+          page: 1,
+          limit: 5,
+          total: 0,
+          total_pages: 0,
+        }),
+        (state.loading = false);
       state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllTask.pending, (state) => {
+      .addCase(fetchCompletedTask.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchAllTask.fulfilled, (state, action) => {
+      .addCase(fetchCompletedTask.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload.data;
         state.meta_data = action.payload.meta_data;
         state.error = null;
       })
-      .addCase(fetchAllTask.rejected, (state, action) => {
+      .addCase(fetchCompletedTask.rejected, (state, action) => {
         state.loading = false;
         state.items = [];
         state.error = action.error.message || "Failed to load data!";
@@ -57,5 +57,5 @@ const allTaskSlice = createSlice({
   },
 });
 
-export const { logoutAllTask } = allTaskSlice.actions;
-export const allTaskReducer = allTaskSlice.reducer;
+export const { logoutCompletedTask } = completedTaskSlice.actions;
+export const completedTaskReducer = completedTaskSlice.reducer;
