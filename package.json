@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
